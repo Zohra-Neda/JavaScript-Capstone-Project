@@ -1,3 +1,65 @@
-body {
-    background-color: aqua;
+
+.div-li {
+  display: flex;
+  flex-direction: column;
+}
+
+#logo {
+  background-image: url('../images/logo.jpg');
+  border: 4px solid hsl(0, 58%, 31%);
+  border-radius: 5%;
+  width: 70px;
+  height: 70px;
+  margin-top: -17px;
+  margin-right: 42rem;
+  -webkit-border-radius: 5%;
+  -moz-border-radius: 5%;
+  -ms-border-radius: 5%;
+  -o-border-radius: 5%;
+}
+
+#logo:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transform: scale(2);
+  transition: 0.5s;
+  -webkit-transform: scale(2);
+  -moz-transform: scale(2);
+  -ms-transform: scale(2);
+  -o-transform: scale(2);
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  height: 100px;
+  background-color: #000;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  flex-wrap: wrap;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 2rem;
+}
+
+li > a {
+  color: #fff;
+  list-style: none;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+li > a:hover {
+  color: hsl(0, 100%, 30%);
 }
