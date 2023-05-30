@@ -2,8 +2,7 @@ const cardsContainer = document.querySelector('.cards-display-section');
 
 const displayMovies = async (shows) => {
   cardsContainer.innerHTML = '';
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < 20 && i < shows.length; i++) {
+  for (let i = 0; i < 20 && i < shows.length; i += 1) {
     const show = shows[i];
 
     cardsContainer.innerHTML += `
