@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 .div-logo {
   display: flex;
   flex-direction: column;
