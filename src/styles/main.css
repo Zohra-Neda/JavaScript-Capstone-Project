@@ -2,7 +2,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: #000;
 }
 
 .div-logo {
@@ -17,6 +16,7 @@ a {
 
 html body {
   height: 100%;
+  background-color: #000;
 }
 
 #logo {
@@ -86,7 +86,7 @@ li > a:hover {
 
 .movie-title {
   margin: 5px 0;
-  color: hsl(0, 100%, 30%);
+  color: #000;
 }
 
 .btn {
@@ -95,6 +95,19 @@ li > a:hover {
   background-color: #000;
   padding: 10px;
   width: 100%;
+}
+
+.likes-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 footer {
