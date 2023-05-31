@@ -11,12 +11,12 @@ const displayMovies = async (shows) => {
           <div class="likes">
             <h4 class="movie-title">${show.name}</h4>
             <div class="heart">
-              <i class="fa-regular fa-heart" data-id=${show.id}></i>
-              <p data-id="${show.id}"> <span class="like-numbers"></span></p>
+              <i class="fa-regular fa-heart" id=${show.id}></i>
+              <p id="${show.id}"> <span class="like-numbers"></span></p>
             </div>
           </div>
           <div class="description">
-            <button class="btn" data-id="${show.id}">Comments</button>
+            <button class="btn" id="${show.id}">Comments</button>
           </div>
         </li>
       `;
