@@ -141,7 +141,7 @@ footer p {
 
 .closeBtd {
   height: 30px;
-  width: 70%;
+  width: 100%;
   justify-content: end;
   background-color: #fff;
 }
@@ -180,17 +180,14 @@ footer p {
 
 .mainContainer1 {
   background: #fff;
+  margin-top: 250px;
   width: 80%;
-  height: 100%;
+  top: 20px;
   border: 2px solid blue;
-
-  /* overflow-y: scroll; */
 }
 
 .liContainer {
   position: absolute;
-
-  /* background-color: #fff; */
 }
 
 .movieInfo {

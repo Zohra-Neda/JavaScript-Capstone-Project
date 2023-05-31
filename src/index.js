@@ -26,11 +26,11 @@ parentElem.addEventListener('click', (event) => {
     newDiv.innerHTML = `
     <div class="mainContainer1">
 
+    
+    <div class="movieDetails flex">
     <div class="closeBtd flex">
         <img id="closeImg" src="./images/close_icon.png" alt="main image">
     </div>
-
-    <div class="movieDetails flex">
         <div class="imgDiv">
            <img src="${arr[eventId].image.medium}">
         </div>
@@ -41,7 +41,7 @@ parentElem.addEventListener('click', (event) => {
                 <span>Genres : ${arr[eventId].genres}</span>
             </div>
             <div class="otherInfo flex">
-                <span>Episode Length : ${arr[eventId].averageRuntim}</span>
+                <span>Episode Length : ${arr[eventId].averageRuntime}</span>
                 <span>Rating : ${arr[eventId].rating.average}</span>
             </div>
         </div>
