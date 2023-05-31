@@ -5,6 +5,14 @@
   background-color: #000;
 }
 
+h1,
+h2,
+h3,
+span,
+button {
+  background-color: #fff;
+}
+
 .div-logo {
   display: flex;
   flex-direction: column;
@@ -123,4 +131,116 @@ footer p {
     height: 50%;
     margin-top: 1rem;
   }
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeBtd {
+  height: 30px;
+  width: 100%;
+  justify-content: end;
+  background-color: #fff;
+}
+
+.closeBtd > img {
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+}
+
+.imgDiv {
+  height: 295px;
+  width: 210px;
+  background-color: #fff;
+}
+
+.imgDiv > img {
+  height: 295px;
+  width: 210px;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff92;
+  overflow: scroll;
+  z-index: 9999;
+}
+
+.mainContainer1 {
+  background: #fff;
+  margin-top: 250px;
+  width: 80%;
+  top: 20px;
+  border: 2px solid blue;
+}
+
+.liContainer {
+  position: absolute;
+}
+
+.movieInfo {
+  flex-direction: row;
+  width: 100%;
+  background-color: #fff;
+}
+
+.otherInfo {
+  flex-direction: column;
+  align-items: start;
+  margin: 10px;
+  background-color: #fff;
+}
+
+.otherInfo > span {
+  padding: 10px;
+  background-color: #fff;
+}
+
+.comments {
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.movieDetails {
+  flex-direction: column;
+  margin: 10px;
+  background-color: #fff;
+}
+
+.addComment {
+  flex-direction: column;
+  margin: 10px;
+  background-color: #fff;
+}
+
+.commentField {
+  flex-direction: column;
+  align-items: start;
+  margin: 10px;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.commentField > input {
+  width: 100%;
+  margin-bottom: 5px;
+  background-color: #fff;
+}
+
+.commentField > textarea {
+  width: 100%;
+  margin-bottom: 5px;
+  background-color: #fff;
 }
