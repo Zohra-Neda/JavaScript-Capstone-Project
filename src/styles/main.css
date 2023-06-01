@@ -179,20 +179,23 @@ footer p {
   width: 100%;
   height: 100vh;
   background-color: #ffffff92;
-  overflow: scroll;
+
+  /* overflow: scroll; */
   z-index: 9999;
 }
 
 .mainContainer1 {
   background: #fff;
-  margin-top: 250px;
+
+  /* margin-top: 20%; */
   width: 80%;
-  top: 20px;
+  top: 0;
   border: 2px solid blue;
+  overflow: scroll;
 }
 
 .liContainer {
-  position: absolute;
+  position: relative;
 }
 
 .movieInfo {
@@ -211,6 +214,11 @@ footer p {
 .otherInfo > span {
   padding: 10px;
   background-color: #fff;
+}
+
+.commentsDisplay {
+  flex-direction: column;
+  align-items: start;
 }
 
 .comments {

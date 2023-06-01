@@ -5,6 +5,8 @@ import displayMovies from './modules/displayMovies.js';
 import getMovies from './modules/api.js';
 import { getLikes } from './modules/showLikes.js';
 import addLikes from './modules/addLikes.js';
+import displayComments from './modules/comments_display.js';
+import { saveComments } from './modules/comnt_fetch.js';
 
 const addEvents = () => {
   const likeIcons = document.querySelectorAll('.fa-heart');
@@ -65,16 +67,15 @@ parentElem.addEventListener('click', (event) => {
         </div>
         <div class="comments flex">
             <h3>Comments</h3>
-            <div class="commentsDisplay flex">
-                <span>Nahid : Love this movie</span>
+            <div id="commentsDisplay" class="commentsDisplay flex">
             </div>
         </div>
         <div class="addComment flex">
             <h3>Add a comment</h3>
             <div class="commentField flex">
-                <input type="text" class="name" placeholder="Your name">
-                <textarea name="" id="" cols="30" rows="5" placeholder="Your insights"></textarea>
-                <button>Comment</button>
+                <input type="text" id='nArea${eventId + 1}' class="name" placeholder="Your name">
+                <textarea name="" id='mArea${eventId + 1}' cols="30" rows="5" placeholder="Your insights"></textarea>
+                <button id=${eventId + 1} class="comntBtn">Comment</button>
             </div>
         </div>
     </div>
@@ -82,6 +83,7 @@ parentElem.addEventListener('click', (event) => {
     `;
     document.body.appendChild(newDiv);
   }
+  displayComments(eventId + 1);
 });
 
 const bodyHtml = document.getElementById('liContainer');
@@ -92,6 +94,25 @@ parent.addEventListener('click', (event) => {
     const lastCh = parent.lastChild;
     if (lastCh) {
       document.body.removeChild(lastCh);
+    }
+  }
+});
+
+parent.addEventListener('click', (event) => {
+  if (event.target.matches('.comntBtn')) {
+    const lastCh = parent.lastChild;
+    const targetElem = event.target;
+    const id = targetElem.getAttribute('id');
+
+    if (lastCh) {
+      const comntField = event.target.previousElementSibling;
+      const nameField = comntField.previousElementSibling;
+      const comntFieldValue = comntField.value;
+      const nameFieldValue = nameField.value;
+      saveComments(id, nameFieldValue, comntFieldValue);
+      comntField.value = '';
+      nameField.value = '';
+      displayComments(id);
     }
   }
 });

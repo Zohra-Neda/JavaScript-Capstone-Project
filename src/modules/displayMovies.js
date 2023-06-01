@@ -1,7 +1,7 @@
 const cardsContainer = document.querySelector('.cards-display-section');
 
 const displayMovies = async (shows) => {
-  for (let i = 0; i < 20 && i < shows.length; i += 1) {
+  for (let i = 0; i < 16 && i < shows.length; i += 1) {
     const show = shows[i];
 
     cardsContainer.innerHTML += `
