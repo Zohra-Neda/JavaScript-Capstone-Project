@@ -1,97 +1,111 @@
-import './styles/main.css';
-import './images/logo1.jpg';
-import './images/close_icon.png';
+import './main.css';
+import getMovie from './modules/getMovies.js';
 import displayMovies from './modules/displayMovies.js';
-import getMovies from './modules/api.js';
-import { getLikes } from './modules/showLikes.js';
-import addLikes from './modules/addLikes.js';
+import getLikes from './modules/getLikes.js';
+import like from './modules/postLike.js';
+import popupDisplay from './modules/popupDisplay.js';
+import addcomment from './modules/postComment.js';
+import showcomment from './modules/showComment.js';
+import updateCount from './modules/moviesCounter.js';
+import CommentCount from './modules/CommentCount.js';
 
-const addEvents = () => {
-  const likeIcons = document.querySelectorAll('.fa-heart');
-  likeIcons.forEach((likeIcon) => {
-    likeIcon.addEventListener('click', () => {
-      if (likeIcon.classList.contains('fa-solid', 'fa-heart-half')) {
-        return;
-      }
-      addLikes(likeIcon.dataset.id);
-      likeIcon.classList.add('fa-sharp', 'fa-solid', 'fa-heart-half');
-    });
+const appId = 'uHJS5mPPPDDpgRsHQqad';
+
+const numberOfMovies = 15;
+const movies = [];
+
+for (let i = 1; i <= numberOfMovies; i += 1) {
+  // eslint-disable-next-line no-await-in-loop
+  const movie = await getMovie(i);
+  movies.push(movie);
+}
+
+const updateLikes = async (appId) => {
+  let likes = await getLikes(appId);
+
+  if (likes.length === 0) {
+    likes = [];
+  } else {
+    likes = JSON.parse(likes);
+  }
+
+  return likes;
+};
+
+const likes = await updateLikes(appId);
+
+await displayMovies(movies, likes, appId);
+
+// update count
+const counter = document.getElementById('counter');
+counter.innerHTML = await updateCount();
+
+const likeBtns = document.querySelectorAll('.like-button');
+
+const update = async (likes, index, span) => {
+  const movieId = `${index + 1}`;
+  likes.forEach((item) => {
+    if (movieId === item.item_id) {
+      span.innerHTML = `${item.likes}`;
+    }
   });
 };
 
-const displayAllMovies = async () => {
-  const display = await getMovies();
-  displayMovies(display);
-  addEvents();
-  getLikes();
+likeBtns.forEach((item, index) => {
+  item.addEventListener('click', async (e) => {
+    const likesCount = e.currentTarget.parentNode.children[0];
+    await like(appId, index + 1);
+    const likes = await updateLikes(appId);
+    const likesBox = await likesCount;
+    await update(likes, index, likesBox);
+  });
+});
+
+// SHOW & HIDE
+const showhide = async () => {
+  document.getElementById('popup-window').classList.toggle('hide');
+  document.getElementById('popup-window').classList.toggle('show');
+  document.querySelector('#overlay').classList.toggle('hide');
 };
 
-window.addEventListener('load', displayAllMovies);
+// comment button
+const commentbtns = document.querySelectorAll('.comments');
 
-// COMMENT POPUP
-const shows = await getMovies();
-const arr = Array.from(shows);
+commentbtns.forEach((commentbtn, index) => {
+  commentbtn.addEventListener('click', async () => {
+    const resdata = await getMovie(index + 1);
+    await showhide();
+    await popupDisplay(resdata);
+    window.scrollTo(2, 2);
+    await showcomment(appId, index + 1);
+    await CommentCount();
+  });
+});
 
-const parentElem = document.getElementById('liContainer');
-parentElem.addEventListener('click', (event) => {
-  const matcher = event.target.matches('.btn');
-  const eventElem = event.target;
-  const eventId = eventElem.id - 1;
+document.addEventListener('click', async (event) => {
+  const { target } = event;
 
-  if (matcher) {
-    const newDiv = document.createElement('div');
-    newDiv.className = 'mainContainer';
-    newDiv.innerHTML = `
-    <div class="mainContainer1">
-
-    
-    <div class="movieDetails flex">
-    <div class="closeBtd flex">
-        <img id="closeImg" src="./images/close_icon.png" alt="main image">
-    </div>
-        <div class="imgDiv">
-           <img src="${arr[eventId].image.medium}">
-        </div>
-        <h2>${arr[eventId].name}</h2>
-        <div class="movieInfo flex">
-            <div class="otherInfo flex">
-                <span>Language: ${arr[eventId].language}</span>
-                <span>Genres : ${arr[eventId].genres}</span>
-            </div>
-            <div class="otherInfo flex">
-                <span>Episode Length : ${arr[eventId].averageRuntime}</span>
-                <span>Rating : ${arr[eventId].rating.average}</span>
-            </div>
-        </div>
-        <div class="comments flex">
-            <h3>Comments</h3>
-            <div class="commentsDisplay flex">
-                <span>Nahid : Love this movie</span>
-            </div>
-        </div>
-        <div class="addComment flex">
-            <h3>Add a comment</h3>
-            <div class="commentField flex">
-                <input type="text" class="name" placeholder="Your name">
-                <textarea name="" id="" cols="30" rows="5" placeholder="Your insights"></textarea>
-                <button>Comment</button>
-            </div>
-        </div>
-    </div>
-</div>
-    `;
-    document.body.appendChild(newDiv);
+  if (target.classList.contains('close-btn')) {
+    await showhide();
   }
 });
 
-const bodyHtml = document.getElementById('liContainer');
-const parent = bodyHtml.parentElement.parentElement;
+// add comment
 
-parent.addEventListener('click', (event) => {
-  if (event.target.matches('#closeImg')) {
-    const lastCh = parent.lastChild;
-    if (lastCh) {
-      document.body.removeChild(lastCh);
-    }
+document.addEventListener('click', async (event) => {
+  const { target } = event;
+  if (target.classList.contains('submitbtn')) {
+    event.preventDefault();
+    const userName = document.getElementById('username').value;
+    const comment = document.getElementById('usercomment').value;
+    const movie = target.closest('#popup-window').index;
+    const userComment = { userName, comment };
+    await addcomment(appId, movie, userComment);
+    await showcomment(appId, movie);
+    await CommentCount();
+    document.getElementById('username').value = '';
+    document.getElementById('usercomment').value = '';
   }
 });
+
+CommentCount();

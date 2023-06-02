@@ -1,25 +1,44 @@
-const cardsContainer = document.querySelector('.cards-display-section');
+const displayMovies = async (Movies, Likes) => {
+  const moviesContainer = document.getElementById('movies-container');
+  moviesContainer.innerHTML = '';
+  const movies = Movies;
+  const likes = Likes;
 
-const displayMovies = async (shows) => {
-  for (let i = 0; i < 20 && i < shows.length; i += 1) {
-    const show = shows[i];
+  movies.forEach((movie, index) => {
+    const movieId = `${index + 1}`;
+    const div = document.createElement('div');
+    const movieBar = document.createElement('div');
+    const likeBox = document.createElement('div');
+    const span = document.createElement('span');
+    const button = document.createElement('button');
+    const comment = document.createElement('button');
+    div.className = 'movie-card';
+    div.index = `${index + 1}`;
+    movieBar.className = 'movie-description';
+    likeBox.className = 'likes';
+    span.className = 'likes-counter';
+    button.className = 'like-button';
+    comment.className = 'comments';
+    div.innerHTML = `
+    <img class="movie-image" src="${movie.image.original}">`;
+    movieBar.innerHTML = `<h2 class="movie-name">${movie.name}</h2>`;
+    let likesCount = 0;
+    likes.forEach((item) => {
+      if (movieId === item.item_id) {
+        likesCount = item.likes;
+      }
+    });
 
-    cardsContainer.innerHTML += `
-        <li id="movie-${show.id}" class="movie-item">
-          <img src=${show.image.medium} alt="movie-image" class="movie-image" />
-          <div class="likes-container">
-            <h4 class="movie-title">${show.name}</h4>
-            <div class="icon">
-            <i class="fa-sharp fa-regular fa-heart" data-id=${show.id}></i>
-            <p data-id="${show.id}"><span class="like-rates"></span></p>
-            </div>
-          </div>
-          <div>
-            <button class="btn" id="${show.id}">Comments</button>
-          </div>
-        </li>
-      `;
-  }
+    span.innerHTML = `${likesCount}`;
+    button.innerHTML = '<i class="fas fa-heart"></i>';
+    comment.innerHTML = 'Comment';
+    likeBox.appendChild(span);
+    likeBox.appendChild(button);
+    movieBar.appendChild(likeBox);
+    div.appendChild(movieBar);
+    div.appendChild(comment);
+    moviesContainer.appendChild(div);
+  });
 };
 
 export default displayMovies;
