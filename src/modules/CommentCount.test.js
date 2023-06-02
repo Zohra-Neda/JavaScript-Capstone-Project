@@ -1,5 +1,5 @@
 import { JSDOM } from 'jsdom';
-import CommentCount from './CommentCount';
+import CommentCount from './CommentCount.js';
 
 describe('CommentCount', () => {
   beforeEach(() => {
