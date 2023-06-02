@@ -8,30 +8,29 @@
     <title>Movie App</title>
 </head>
 <body>
-    <header>
-        <nav class="nav">
-          <div class="div-logo">
-            <img src="./images/logo1.jpg" alt="company logo" id="logo">
-          </div>
-          <ul>
-            <li>
-              <a href="#" class="show">Home</a>
-            </li>
-            <li>
-              <a href="#">Shows</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <section class="main-section">
-        <ul id="liContainer" class="cards-main-section cards-display-section"></ul>
-      </section>
-      <section class="popup-display"></section>
-      <footer>
-        <p class="footerP">Created by <a href="">Zohra Neda</a>  & <a href=""> Nahid Raihan</a></p>
-      </footer>
+  <header id="header" class="show">
+    <div class="logoDiv">
+      <img id="logo" src="./images/logo1.jpg" alt="image-logo" srcset="">
+    </div>
+      <nav id="nav">
+          <nav id="navbar">
+              <a class="nav-link" href="">Home</a>
+              <span>
+                  <a href="">Movies Show</a>
+                  <div id="counter"></div>
+              </span>
+          </nav>
+      </nav>
+  </header>
+  <main id="main">
+     <section id="movies-container" class="show">
+     </section>
+     <section id="popup-window" class="hide">
+     </section>
+     <div id="overlay" class="hide"></div>
+  </main>
+  <footer id="footer" class="show">
+      <p class="footerP">Created by <a href="">Zohra Neda</a>  & <a href=""> Nahid Raihan</a></p>
+  </footer>
 </body>
 </html>
