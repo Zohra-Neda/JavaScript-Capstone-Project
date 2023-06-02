@@ -20,23 +20,10 @@ header {
   position: fixed;
   background-color: #000;
   width: 100%;
-
-  /* justify-content: space-around; */
   align-items: center;
   height: 4.2rem;
   padding: 10px;
 }
-
-/* #logo {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  border: none;
-  width: 100%;
-  height: 100%;
-  margin-left: -8rem;
-  margin-top: 20px;
-} */
 
 .logoDiv {
   background-image: url('./images/logo1.jpg');

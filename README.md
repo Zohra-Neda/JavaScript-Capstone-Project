@@ -73,9 +73,11 @@ Welcome to our open-source website repository on GitHub! this website utilizes A
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Click the link bellow to see the live demo:
+> Click the link bellow to see the live demo and also the presentation about the project:
 
- - [LIVE DEMO](https://zohra-neda.github.io/JavaScript-Capstone-Project/dist/)
+ - [LIVE DEMO](https://zohra-neda.github.io/JavaScript-Capstone-Project/dist/);
+
+ > [The project presentation](https://youtu.be/A7hr9jTAb3A)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
